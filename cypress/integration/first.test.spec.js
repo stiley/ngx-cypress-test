@@ -86,7 +86,7 @@ describe("First test suite", ()=>{
   /**
    * If we only want to verify
    */
-  it.only('Exercise Then and Wrap cypress functions',()=>{
+  it('Exercise Then and Wrap cypress functions',()=>{
     cy.visit("/");
     // open the forms section
     cy.contains('Forms').click();
@@ -116,7 +116,7 @@ describe("First test suite", ()=>{
       expect(passwordLabel).to.equal('Password');
     })
 
-    // find second first
+    // find second form
     cy.contains('nb-card','Basic form').then((form) =>{
       // note here we are now using JQuery so find is actually JQuery here
       const emailLabel = form.find('[for="exampleInputEmail1"]').text();
@@ -124,8 +124,91 @@ describe("First test suite", ()=>{
       cy.log(emailLabel);
       expect(emailLabel).to.equal('Email address');
       expect(passwordLabel).to.equal('Password');
+    });
+  })
+
+  it('Using wrap to wrap a component found using cy.contains', ()=>{
+    //
+    cy.visit("/");
+    // open the forms section
+    cy.contains('Forms').click();
+    cy.contains('Form Layouts').click();
+
+    // this approach passes the 'form' found by cypress into our function
+    // but note we are now forced to use .find which is from JQuery.
+    cy.contains('nb-card','Using the Grid').then((form) =>{
+      const emailLabel =  form.find('[for="inputEmail1"]').text();
+      const passwordLabel = form.find('[for="inputPassword2"]').text();
+      expect(emailLabel).to.equal('Email');
+      expect(passwordLabel).to.equal('Password');
     })
 
+    // if we want to use Cypress we need to wrap the result from the cy.contains
+    cy.contains('nb-card','Using the Grid').then((form) =>{
+      cy.wrap(form).find('[for="inputPassword2"]').should('contain', 'Password')
+    })
+
+  })
+
+  it('Using invoke', ()=> {
+    //
+    cy.visit("/");
+    // open the forms section
+    cy.contains('Forms').click();
+    cy.contains('Form Layouts').click();
+
+    // Option1
+    //get the label for email a
+    cy.get('[for="exampleInputEmail1"]').should('contain','Email address');
+
+    // Option2
+    cy.get('[for="exampleInputEmail1"]').then((label) =>{ // here label is JQuery element
+      expect(label.text()).to.equal('Email address')
+    });
+
+    // option 3 using invoke
+    cy.get('[for="exampleInputEmail1"]').invoke('text').then((labelText) =>{
+      expect(labelText).to.equal('Email address');
+    });
+
+
+    // on the basic form we have a checkbox that we want to ensure is checked when we click it
+    // lets make sure its not clicked to start with
+    // before its checked we can make sure its not checked
+    cy.contains('nb-card','Basic form')
+      .find('nb-checkbox')
+      .find('.custom-checkbox')
+      .invoke('attr','class')
+      .should('not.contain','checked');
+
+
+
+    // notice its class changes from 'custom-checkbox checked' to 'custom-checkbox' so we can use that property to validate the state
+    cy.contains('nb-card','Basic form')
+      .find('nb-checkbox')
+      .click()
+      .find('.custom-checkbox')
+      .invoke('attr','class')
+      .should('contain','checked');
+
+
+  });
+
+  it.only('Text not in DOM',()=>{
+    // what about text not in DOM, like after using the date picker http://localhost:4200/pages/forms/datepicker
+    //
+    cy.visit("/");
+    // open the forms section
+    cy.contains('Forms').click();
+    cy.contains('Datepicker').click();
+
+    cy.contains('nb-card','Common Datepicker').find('input').then( (inputField) =>{
+      // since we need to click on eklement we need to wrap
+      cy.wrap(inputField).click();
+      cy.get('nb-calendar-day-picker').contains('25').click();
+      // now we need to make sure the date is in the property
+      cy.wrap(inputField).invoke('prop','value').should('contain','Jan 25, 2021');
+    })
   })
 
 })
