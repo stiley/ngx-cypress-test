@@ -194,7 +194,7 @@ describe("First test suite", ()=>{
 
   });
 
-  it.only('Text not in DOM',()=>{
+  it('Text not in DOM',()=>{
     // what about text not in DOM, like after using the date picker http://localhost:4200/pages/forms/datepicker
     //
     cy.visit("/");
