@@ -37,7 +37,7 @@ describe('Using lists and dropdowns',() =>{
 
 
   // instead of one by one, lets loop the validation
-  it.only('Looping through list values',()=>{
+  it('Looping through list values',()=>{
     const colours = {
       Light: 'rgb(255, 255, 255)',
       Dark: 'rgb(34, 43, 69)',
