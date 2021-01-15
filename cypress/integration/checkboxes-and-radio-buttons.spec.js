@@ -28,7 +28,7 @@ describe('Using checkboxes and radio buttons',()=>{
     })
   });
 
-  it.only('Checkbox examples', () =>{
+  it('Checkbox examples', () =>{
     cy.visit("/");
     // open the forms section
     cy.contains('Modal & Overlays').click();
