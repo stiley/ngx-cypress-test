@@ -1,6 +1,6 @@
 /// <reference types="cypress"/>
 
-describe('Using lists and dropdowns',() =>{
+describe('Using Web tables',() =>{
 
   // for this test we want to find Larry Bird.  Click Edit , update age and save
   it('Allows us to update an Age value in the table',() =>{
@@ -55,7 +55,7 @@ describe('Using lists and dropdowns',() =>{
 
  })
 
-  it.only('Allows filter by age', () =>{
+  it('Allows filter by age', () =>{
     cy.visit("/");
     // open the Tables & Data
     cy.contains('Tables & Data').click();
