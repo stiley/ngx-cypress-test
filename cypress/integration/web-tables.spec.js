@@ -76,19 +76,9 @@ describe('Using lists and dropdowns',() =>{
           else{
             cy.wrap(tableRow).find('td').eq(6).should('contain',age)
           }
-          
+
         })
-      }) 
+      })
     })
-
-
-
-    
-
-
-
-
-
   });
-
 });
