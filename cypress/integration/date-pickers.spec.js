@@ -2,7 +2,7 @@
 
 describe('Using date pickers',() =>{
 
-  it.only('Basic date picker',()=>{
+  it('Basic date picker',()=>{
     cy.visit("/");
     // open the forms section
     cy.contains('Forms').click();
