@@ -24,7 +24,7 @@ describe('Testing popups and tooltips',()=>{
 });
 
 
-describe.only('Popups', ()=>{
+describe('Popups', ()=>{
   beforeEach(()=>{
     cy.visit("/");
 
@@ -36,7 +36,7 @@ describe.only('Popups', ()=>{
   })
 
 
-  it.only('Can validate a browser popup window',() =>{
+  it('Can validate a browser popup window',() =>{
     cy.contains('Tables & Data').click();
     cy.contains('Smart Table').click();
 
