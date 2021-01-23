@@ -3,8 +3,13 @@
 
 describe("First test suite", ()=>{
 
+  beforeEach('Visit main page', () => {
+    cy.openHomePage();
+  })
+
+
   it('first test',()=>{
-    cy.visit("/");
+
 
     // open the forms section
     cy.contains('Forms').click();
@@ -48,7 +53,7 @@ describe("First test suite", ()=>{
   })
 
   it('More locators',()=>{
-    cy.visit("/");
+
     // open the forms section
     cy.contains('Forms').click();
     cy.contains('Form Layouts').click();
@@ -87,7 +92,7 @@ describe("First test suite", ()=>{
    * If we only want to verify
    */
   it('Exercise Then and Wrap cypress functions',()=>{
-    cy.visit("/");
+
     // open the forms section
     cy.contains('Forms').click();
     cy.contains('Form Layouts').click();
@@ -129,7 +134,7 @@ describe("First test suite", ()=>{
 
   it('Using wrap to wrap a component found using cy.contains', ()=>{
     //
-    cy.visit("/");
+
     // open the forms section
     cy.contains('Forms').click();
     cy.contains('Form Layouts').click();
@@ -151,8 +156,6 @@ describe("First test suite", ()=>{
   })
 
   it('Using invoke', ()=> {
-    //
-    cy.visit("/");
     // open the forms section
     cy.contains('Forms').click();
     cy.contains('Form Layouts').click();
@@ -196,9 +199,7 @@ describe("First test suite", ()=>{
 
   it('Text not in DOM',()=>{
     // what about text not in DOM, like after using the date picker http://localhost:4200/pages/forms/datepicker
-    //
-    cy.visit("/");
-    // open the forms section
+     // open the forms section
     cy.contains('Forms').click();
     cy.contains('Datepicker').click();
 

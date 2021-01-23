@@ -2,9 +2,12 @@
 
 describe('Using Web tables',() =>{
 
+  beforeEach('',()=>{
+    cy.openHomePage();
+  })
+
   // for this test we want to find Larry Bird.  Click Edit , update age and save
   it('Allows us to update an Age value in the table',() =>{
-    cy.visit("/");
     // open the Tables & Data
     cy.contains('Tables & Data').click();
     cy.contains('Smart Table').click();
@@ -25,8 +28,7 @@ describe('Using Web tables',() =>{
 
   // for this test we want to find Larry Bird.  Click Edit , update age and save
   it('Allows us to add and save a new row in the table',() =>{
-    cy.visit("/");
-    // open the Tables & Data
+     // open the Tables & Data
     cy.contains('Tables & Data').click();
     cy.contains('Smart Table').click();
 
@@ -56,7 +58,7 @@ describe('Using Web tables',() =>{
  })
 
   it('Allows filter by age', () =>{
-    cy.visit("/");
+
     // open the Tables & Data
     cy.contains('Tables & Data').click();
     cy.contains('Smart Table').click();

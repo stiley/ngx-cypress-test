@@ -2,8 +2,12 @@
 
 describe('Using checkboxes and radio buttons',()=>{
 
+  beforeEach('Visit main page', () => {
+    cy.openHomePage();
+  })
+
   it('Radio Button example',()=>{
-    cy.visit("/");
+
     // open the forms section
     cy.contains('Forms').click();
     cy.contains('Form Layouts').click();
@@ -29,7 +33,7 @@ describe('Using checkboxes and radio buttons',()=>{
   });
 
   it('Checkbox examples', () =>{
-    cy.visit("/");
+
     // open the forms section
     cy.contains('Modal & Overlays').click();
     cy.contains('Toastr').click();

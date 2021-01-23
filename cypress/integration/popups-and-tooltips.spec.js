@@ -3,7 +3,7 @@
 describe('Testing popups and tooltips',()=>{
 
   beforeEach(()=>{
-    cy.visit("/");
+    cy.openHomePage();
     cy.contains("Modal & Overlays").click();
     cy.contains("Tooltip").click();
   })
@@ -25,10 +25,9 @@ describe('Testing popups and tooltips',()=>{
 
 
 describe('Popups', ()=>{
-  beforeEach(()=>{
-    cy.visit("/");
-
-  })
+  beforeEach(()=> {
+    cy.openHomePage();
+  });
 
   it('Can validate a simple dialog box',() =>{
     cy.contains("Modal & Overlays").click();

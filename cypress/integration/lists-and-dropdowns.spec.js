@@ -2,6 +2,11 @@
 
 describe('Using lists and dropdowns',() =>{
 
+  beforeEach('Visit main page', () => {
+    cy.openHomePage();
+  })
+
+
   const themes = {
     "Light": "nb-theme-default",
     "Dark": "nb-theme-dark",
@@ -11,7 +16,7 @@ describe('Using lists and dropdowns',() =>{
 
 
   it('Radio Button example - Dark Theme',()=>{
-    cy.visit("/");
+
     cy.get('nav nb-select').click();
     cy.get('.options-list').contains('Dark').click();
     cy.get('nav nb-select').should('contain', 'Dark')
@@ -24,7 +29,7 @@ describe('Using lists and dropdowns',() =>{
   });
 
   it('Radio Button example - Cosmic Theme',()=>{
-    cy.visit("/");
+
     cy.get('nav nb-select').click();
     cy.get('.options-list').contains('Cosmic').click();
     cy.get('nav nb-select').should('contain', 'Cosmic')
@@ -44,7 +49,7 @@ describe('Using lists and dropdowns',() =>{
       Cosmic: 'rgb(50, 50, 89)',
       Corporate: 'rgb(255, 255, 255)'
     };
-    cy.visit("/");
+
     cy.get('nav nb-select').then( dropDown => {
       cy.wrap(dropDown).click()
       cy.get('.options-list nb-option').each((listItem,index)=>{
